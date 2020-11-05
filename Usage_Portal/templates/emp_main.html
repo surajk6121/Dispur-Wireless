@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">User ID</th>
+          <th scope="col">Plan ID</th>
+          <th scope="col">Amount Payable</th>
+          <th scope="col">Date Of Call</th>
+          <th scope="col">Call Duration</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for row in employees %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <td>{{row[1]}}</td>
+          <td>{{row[2]}}</td>
+          <td>{{row[3]}}</td>
+          <td>{{row[4]}}</td>
+          <td><a href="/delete/{{row[0]}}" class="btn btn-info" onclick="return confirm('Are You Sure To Delete ?')" >DELETE</a></td>
+        </tr>
+       {% endfor %}
+      </tbody>
+    </table>
+
+<div class="container">
+    <nav class="navbar navbar-dark bg-dark" align="center">
+        <ul class="nav nav-pills nav-fill">
+      <li class="nav-item" align="center">
+        <a class="nav-link active" href="{{ url_for('subscribes') }}">Add New</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{{ url_for('monthly') }}">Generate monthly</a>
+      </li>
+     
+    </ul>
+    </nav>
+    </div>    
+{% endblock content %}

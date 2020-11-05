@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+{% endwith %}
+<div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">User Name</th>
+            <th scope="col">User_mail</th>
+            <th scope="col">Role_ID</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for row in employees %}
+            {% if row.name==current_user.name %}
+            {% else %}
+          <tr>
+            <td>{{row.name}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.role_id}}</td>
+                
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".demo-popup">Edit Access</button>
+<!-- popup box modal starts here -->
+                    <div class="modal fade demo-popup" id="modaledit{{row.User_Id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true"><!-- add userID here -->
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Edit Access Here</h3>
+                     </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('main.accessupdate')}}" method="POST">
+ 
+                            <div class="form-group">
+                                <lable>Enter New Access Code </lable>
+                                <input type="text" class="form-control" name="Access_Level" value="{{row.Access_Level}}">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="user_id" value="{{row.id}}">
+                            </div>
+              
+                            <div class="form-group">
+              
+              
+                               <button class="btn btn-primary" type="submit">Update</button>
+              
+              
+                            </div>
+                        </form>
+                        
+                        <div>
+                           
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>    
+                        </div>
+                        
+                    </div>    
+                    </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal-->
+                        {% endif %}
+                        {% endfor %}
+                </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+{% endblock %}

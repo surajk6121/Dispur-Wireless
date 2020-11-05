@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+
+
+    <div class="form-group">
+        <label for="exampleInputEmail1"><mark style="background-color: #5f788a;"> Customer ID </mark></label> <br>
+
+        <b>{{id}}</b>
+
+      </div>    
+      <div class="form-group">
+        <label for="exampleInputEmail1"><mark style="background-color: #5f788a;"> Customer Name </mark> </label><br>
+        <b>{{user[0]}}</b>
+      </div>    
+      <div class="form-group">
+        <label for="exampleInputEmail1"><mark style="background-color: #5f788a;">Monthly Bill</mark> </label> <br>
+        <b>{{user[1]}}</b>
+      </div>    
+      <div>
+        <a href="/userplans/{{id}}" class="btn btn-info">VIEW DETAILS</a>
+      </div>
+
+<script type="text/javascript">
+  consol.log()
+</script>
+{% endblock content %}
+

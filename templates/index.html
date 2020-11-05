@@ -1,0 +1,47 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+{% block content %}
+{% if current_user.is_authenticated %}
+    <div class="column is-4 is-offset-4">
+            <h1 class="title" style="color:#404040">
+                Welcome {{current_user.name}}
+            </h1>
+            {% if current_user.role_id=='CUST1' %}
+            <a href="{{ url_for('main.utariff') }}" class="button is-block is-info is-large is-fullwidth" style="outline:thick">
+                My Tariff
+            </a>
+            <br />
+            {% endif %}
+            {% if current_user.role_id=='EMP1' %}
+            <a href="{{ url_for('main.atariff') }}" class="button is-block is-info is-large is-fullwidth" style="outline:thick">
+                All Tariff
+            </a>
+            <br />
+            {% endif %}
+            {% if current_user.role_id=='HR1' %}
+            <a href="{{ url_for('main.atariff') }}" class="button is-block is-info is-large is-fullwidth" style="outline:thick">
+                All Tariff
+            </a>
+            <br />
+            <a href="{{ url_for('main.viewemp') }}" class="button is-block is-info is-large is-fullwidth" style="outline:thick">
+                View Employee Details
+            </a>
+            <br />
+            {% endif %}
+            {% if current_user.role_id=='ISM1' %}
+            <a href="{{ url_for('main.atariff') }}" class="button is-block is-info is-large is-fullwidth">
+                All Tariff
+            </a>
+            <br />
+            <a href="{{ url_for('main.accessPortal') }}" class="button is-block is-info is-large is-fullwidth">
+                Escalate permission
+            </a>
+            <br />
+            {% endif %}
+            {% else %}
+            <h1 class="title">
+                Dispur Wireless website
+            </h1>
+            {% endif %}
+            {% endblock %}
+    </div>
